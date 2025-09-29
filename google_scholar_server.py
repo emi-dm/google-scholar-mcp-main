@@ -4,6 +4,7 @@ import logging
 from fastmcp import FastMCP
 from google_scholar_web_search import google_scholar_search, advanced_google_scholar_search
 from scholarly import scholarly
+import argparse
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -14,7 +15,7 @@ mcp = FastMCP("Google Scholar Search MCP 📚")
 @mcp.prompt("Search Google Scholar for articles")
 async def search_google_scholar_articles(topic: str) -> str:
     logging.info(f"Giving prompt. Searching Google Scholar for articles on topic: {topic}")
-    return f"Search for recent and relevant academic articles on the topic: '{topic}' using Google Scholar. Provide a list of articles with their titles, authors, publication year, and a brief summary if available."
+    return f"Search for recent and relevant academic articles on the topic: '{topic}' using Google Scholar. Provide a list of articles with their titles, authors, publication year, and a brief summary if available. Use `google_scholar_search` tool."
 
 @mcp.tool()
 async def search_google_scholar_key_words(query: str, num_results: int = 5000) -> List[Dict[str, Any]]:
@@ -96,4 +97,10 @@ async def get_author_info(author_name: str) -> Dict[str, Any]:
         return {"error": f"An error occurred while retrieving author information: {str(e)}"}
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=3000)
+    parser = argparse.ArgumentParser(description="Google Scholar MCP Server")
+    parser.add_argument("--mode", type=str, choices=["streamable-http", "stdio"], default="streamable-http", help="Transport mode for the MCP server")
+    args = parser.parse_args()
+    if args.mode == "stdio":
+        mcp.run(transport=args.mode)
+    else:
+        mcp.run(transport=args.mode , host="0.0.0.0", port=3000)

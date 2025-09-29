@@ -36,5 +36,7 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
+
+ENTRYPOINT ["uv", "run"]
 # Command to run the application
-CMD ["uv", "run", "google_scholar_server.py"]
+CMD ["google_scholar_server.py", "--mode", "stdio"]

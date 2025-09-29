@@ -27,7 +27,7 @@ To allow VS Code to communicate with the MCP server running in Docker, you need 
       "servers": {
         "scholar_mcp": {
           "command": "docker",
-          "args": ["run", "-p", "3000:3000", "-i", "--rm", "scholar-mcp"]
+          "args": ["run", "-i", "--rm", "scholar-mcp"]
         }
       }
     }

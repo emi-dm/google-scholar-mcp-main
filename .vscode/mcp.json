@@ -2,7 +2,7 @@
   "servers": {
     "scholar_mcp": {
       "command": "docker",
-      "args": ["run", "-p", "3000:3000", "-i", "--rm", "scholar-mcp"],
+      "args": ["run", "-i", "--rm", "scholar-mcp"],
     }
   }
 }
