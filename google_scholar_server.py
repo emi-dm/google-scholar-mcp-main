@@ -45,7 +45,7 @@ async def search_google_scholar_key_words(query: str, num_results: int = 5000) -
 @mcp.tool()
 async def search_google_scholar(query: str, author: Optional[str] = None, year_range: Optional[tuple] = None, num_results: int = 5000) -> List[Dict[str, Any]]:
     """
-    Search for articles on Google Scholar using advanced filters.
+    Search for articles on Google Scholar.
 
     Args:
         query: General search query
