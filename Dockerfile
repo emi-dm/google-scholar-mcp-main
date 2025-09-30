@@ -39,4 +39,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 ENTRYPOINT ["uv", "run"]
 # Command to run the application
-CMD ["google_scholar_server.py", "--mode", "stdio"]
+CMD ["google_scholar_server.py", "--mode", "streamable-http"]
