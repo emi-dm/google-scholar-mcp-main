@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from scholarly import scholarly
 
-# 普通关键词搜索函数
 def google_scholar_search(query, num_results=5):
     """
     Function to search Google Scholar using a simple keyword query.
@@ -64,7 +63,6 @@ def google_scholar_search(query, num_results=5):
 
     return results
 
-# 高级搜索函数
 def advanced_google_scholar_search(query, author=None, year_range=None, num_results=5):
     """
     Function to search Google Scholar using advanced search filters (e.g., author, year range).

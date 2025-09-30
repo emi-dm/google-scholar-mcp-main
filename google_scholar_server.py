@@ -14,6 +14,12 @@ mcp = FastMCP("Google Scholar Search MCP 📚")
 
 @mcp.prompt("Search Google Scholar for articles")
 async def search_google_scholar_articles(topic: str) -> str:
+    """Prompt to search for articles on Google Scholar based on a given topic.
+    Args:
+        topic: The topic to search for articles.
+    Returns:
+        A prompt string to guide the user in searching for articles."""
+    
     logging.info(f"Giving prompt. Searching Google Scholar for articles on topic: {topic}")
     return f"Search for recent and relevant academic articles on the topic: '{topic}' using Google Scholar. Provide a list of articles with their titles, authors, publication year, and a brief summary if available. Use `google_scholar_search` tool."
 
@@ -38,7 +44,6 @@ async def search_google_scholar_key_words(query: str, num_results: int = 5000) -
 
 @mcp.tool()
 async def search_google_scholar(query: str, author: Optional[str] = None, year_range: Optional[tuple] = None, num_results: int = 5000) -> List[Dict[str, Any]]:
-    logging.info(f"Performing advanced search with parameters: {locals()}")
     """
     Search for articles on Google Scholar using advanced filters.
 
@@ -51,6 +56,7 @@ async def search_google_scholar(query: str, author: Optional[str] = None, year_r
     Returns:
         List of dictionaries containing article information
     """
+    logging.info(f"Performing advanced search with parameters: {locals()}")
     try:
         results = await asyncio.to_thread(
             advanced_google_scholar_search,
